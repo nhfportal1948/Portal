@@ -1,0 +1,119 @@
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  GOVERNMENT_ADMIN
+  PRINCIPAL
+  STUDENT
+}
+
+enum OwnershipType {
+  GOVERNMENT
+  PRIVATE
+}
+
+enum SchoolStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum StudentStatus {
+  PENDING_REVIEW
+  APPROVED
+  REJECTED
+}
+
+model User {
+  id              String   @id @default(uuid())
+  email           String?  @unique
+  phone           String?  @unique
+  passwordHash    String
+  role            Role
+  linkedSchoolId  String?  @unique
+  linkedStudentId String?  @unique
+  createdAt       DateTime @default(now())
+
+  // Relations
+  school          School?  @relation("SchoolPrincipal", fields: [linkedSchoolId], references: [id], onDelete: SetNull)
+  student         Student? @relation("StudentUser", fields: [linkedStudentId], references: [id], onDelete: SetNull)
+}
+
+model School {
+  id                        String       @id @default(uuid())
+  schoolName                String
+  ownershipType             OwnershipType
+  province                  String
+  district                  String
+  tehsil                    String
+  completeAddress           String
+  officialEmail             String?
+  officialPhone             String?
+  principalName             String
+  principalCNIC             String
+  principalMobile           String
+  emisCode                  String
+  schoolRegistrationNumber  String?
+  affiliatedEducationBoard  String?
+  status                    SchoolStatus @default(PENDING)
+  rejectionReason           String?
+  createdAt                 DateTime     @default(now())
+  updatedAt                 DateTime     @updatedAt
+
+  // Relations
+  principal                 User?        @relation("SchoolPrincipal")
+  students                  Student[]
+}
+
+model Student {
+  id                  String        @id @default(uuid())
+  fullName            String
+  guardianName        String
+  bFormNumber         String
+  dateOfBirth         DateTime
+  gender              String
+  phoneNumber         String        @default("0300-0000000")
+  photoUrl            String?
+  
+  // Address Info
+  province            String
+  district            String
+  tehsil              String
+  cityVillage         String?
+  postalCode          String?
+  completeAddress     String
+  
+  // School Info
+  schoolId            String?
+  rollNumber          String?
+  
+  // Athletic Info
+  primarySport        String
+  secondarySport      String?
+  preferredPosition   String?
+  dominantHandFoot    String?
+  
+  // Verification documents
+  bFormDocUrl         String
+  consentFormDocUrl   String?
+  
+  // Administration
+  status              StudentStatus @default(PENDING_REVIEW)
+  rejectionReason     String?
+  athleteId           String?
+  athleteIdIssuedAt   DateTime?
+  
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
+
+  // Relations
+  school              School?       @relation(fields: [schoolId], references: [id], onDelete: SetNull)
+  user                User?         @relation("StudentUser")
+}
