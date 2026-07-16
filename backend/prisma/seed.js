@@ -5,27 +5,22 @@ const prisma = new PrismaClient();
 
 async function main() {
   const adminEmail = 'admin@sportsportal.gov.pk';
-  const adminPassword = 'AdminSecurePassword123!';
-
-  // Check if admin already exists
-  const existingAdmin = await prisma.user.findFirst({
-    where: {
-      email: adminEmail,
-    },
-  });
-
-  if (existingAdmin) {
-    console.log(`GOVERNMENT_ADMIN user already exists: ${existingAdmin.email}`);
-    return;
-  }
+  const adminPassword = 'admin123'; // Easy password for development/testing
 
   // Hash the password
   const salt = await bcrypt.genSalt(10);
   const passwordHash = await bcrypt.hash(adminPassword, salt);
 
-  // Create admin
-  const admin = await prisma.user.create({
-    data: {
+  // Upsert (update if exists, create if not) admin credentials in the database
+  const admin = await prisma.user.upsert({
+    where: {
+      email: adminEmail,
+    },
+    update: {
+      passwordHash,
+      role: 'GOVERNMENT_ADMIN',
+    },
+    create: {
       email: adminEmail,
       passwordHash,
       role: 'GOVERNMENT_ADMIN',
@@ -33,8 +28,8 @@ async function main() {
   });
 
   console.log('Database seeded successfully!');
-  console.log('Created GOVERNMENT_ADMIN User:');
-  console.log(`- Email: ${admin.email}`);
+  console.log('GOVERNMENT_ADMIN User Credentials Fed to Database:');
+  console.log(`- Email:    ${admin.email}`);
   console.log(`- Password: ${adminPassword}`);
 }
 

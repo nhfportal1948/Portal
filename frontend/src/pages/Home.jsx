@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { TrendingUp, Activity, Users, School, HelpCircle } from 'lucide-react';
 import HowItWorks from '../components/HowItWorks';
+import TutorialVideo from '../components/TutorialVideo';
 
 export default function Home() {
   return (
@@ -35,8 +36,11 @@ export default function Home() {
         </div>
       </header>
 
-      {/* How It Works Diagram */}
+      {/* How It Works Diagram & Student Workflow */}
       <HowItWorks />
+
+      {/* Video Tutorial Section */}
+      <TutorialVideo />
 
       {/* Benefits Section */}
       <section className="benefits-section">

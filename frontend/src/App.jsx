@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import Navbar           from './components/Navbar';
 import Footer           from './components/Footer';
 import ProtectedRoute   from './components/ProtectedRoute';
+import ScrollToTop      from './components/ScrollToTop';
 
 import Home              from './pages/Home';
 import RegisterPrincipal from './pages/RegisterPrincipal';
@@ -47,7 +48,9 @@ function PublicLayout() {
  */
 function App() {
   return (
-    <Routes>
+    <>
+      <ScrollToTop />
+      <Routes>
       {/* Admin dashboard — full-viewport, role-gated */}
       <Route
         path="/admin"
@@ -81,6 +84,7 @@ function App() {
       {/* All public routes — wrapped in shared Navbar/Footer shell */}
       <Route path="/*" element={<PublicLayout />} />
     </Routes>
+    </>
   );
 }
 
