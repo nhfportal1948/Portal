@@ -21,7 +21,8 @@ export default function Navbar({ onSignInClick }) {
     }
   }, [location.pathname]);
 
-  const isActive = (path) => location.pathname === path;
+  const isActive = (path) => location.pathname === path && !location.hash;
+  const isHashActive = (hash) => location.pathname === '/' && location.hash === hash;
 
   return (
     <nav className="navbar">
@@ -36,7 +37,7 @@ export default function Navbar({ onSignInClick }) {
 
         <div className="navbar-menu">
           <Link to="/"                   className={`nav-link ${isActive('/')                   ? 'active' : ''}`}>Home</Link>
-          <a    href="#about"            className="nav-link">About</a>
+          <Link to="/#about"             className={`nav-link ${isHashActive('#about')          ? 'active' : ''}`}>About</Link>
           <Link to="/register-principal" className={`nav-link ${isActive('/register-principal') ? 'active' : ''}`}>Register School</Link>
           <Link to="/register-student"   className={`nav-link ${isActive('/register-student')   ? 'active' : ''}`}>Register Athlete</Link>
           <Link to="/track-status"       className={`nav-link ${isActive('/track-status')       ? 'active' : ''}`}>Track Status</Link>

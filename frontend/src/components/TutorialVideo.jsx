@@ -37,7 +37,7 @@ export default function TutorialVideo() {
           <div className="tutorial-video-card">
             <div className="video-responsive-wrapper">
               <iframe
-                src="https://www.youtube.com/embed/FrFxdojgeYI?rel=0"
+                src="https://www.youtube.com/embed/NK0UKMG-IJ8?rel=0&modestbranding=1"
                 title="National U-15 Hockey Portal - How to Fill Form Tutorial"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
@@ -51,10 +51,10 @@ export default function TutorialVideo() {
                 <span className="video-title-small">Step-by-Step Athlete Form Guidance</span>
               </div>
               <a
-                href="https://youtu.be/FrFxdojgeYI"
+                href="https://youtu.be/NK0UKMG-IJ8"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn btn-outline-navy btn-youtube-link"
+                className="btn btn-youtube-link"
               >
                 <span>Watch on YouTube</span>
                 <ExternalLink size={16} />
