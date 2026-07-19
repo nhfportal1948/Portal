@@ -491,7 +491,7 @@ export default function RegisterStudent() {
 
                 <div className={fieldClass('password')}>
                   <label htmlFor="reg-pw">Password (Min. 8 chars) *</label>
-                  <div className="input-with-icon">
+                  <div className="input-icon-wrapper">
                     <input
                       type={showPass ? 'text' : 'password'}
                       id="reg-pw"
@@ -521,7 +521,7 @@ export default function RegisterStudent() {
 
                 <div className={fieldClass('confirmPassword')}>
                   <label htmlFor="reg-cpw">Confirm Password *</label>
-                  <div className="input-with-icon">
+                  <div className="input-icon-wrapper">
                     <input
                       type={showConf ? 'text' : 'password'}
                       id="reg-cpw"
