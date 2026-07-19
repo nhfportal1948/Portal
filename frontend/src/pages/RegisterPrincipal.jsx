@@ -342,7 +342,8 @@ export default function RegisterPrincipal() {
 
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:5000/auth/register-principal', {
+      const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+      const response = await fetch(`${API_BASE}/auth/register-principal`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
