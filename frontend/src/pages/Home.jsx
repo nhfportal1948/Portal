@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { TrendingUp, Activity, Users, School, HelpCircle } from 'lucide-react';
+import { TrendingUp, Activity, Users, School, HelpCircle, Award, User } from 'lucide-react';
 import HowItWorks from '../components/HowItWorks';
 import TutorialVideo from '../components/TutorialVideo';
 
@@ -24,8 +24,9 @@ export default function Home() {
             </Link>
             
             <div className="tooltip-container">
-              <Link to="/register-student" className="btn btn-white-outline btn-hero">
-                <span>Register as Student</span>
+              <Link to="/register-student" className="btn btn-accent btn-hero">
+                <User size={18} />
+                <span>Register as Athlete</span>
                 <HelpCircle size={14} className="info-icon" />
               </Link>
               <div className="tooltip-text">
@@ -45,42 +46,39 @@ export default function Home() {
       {/* Benefits Section */}
       <section className="benefits-section">
         <div className="container">
-          <div className="section-header">
-            <span className="section-tag">PROGRAM BENEFITS</span>
-            <h2 className="section-title font-serif">Key Objectives & Capabilities</h2>
-            <p className="section-description">
-              Our registry serves as a single source of truth for sports scouts and coaches to track and support rising stars.
+          <div className="section-header text-center">
+            <span className="section-tag">ADVANTAGES</span>
+            <h2 className="section-title font-serif">Why Register Your School?</h2>
+            <p className="section-subtitle">
+              Join the official network to provide your students with pathways to national selection and grants.
             </p>
           </div>
-
           <div className="benefits-grid">
             <div className="benefit-card">
-              <div className="benefit-icon-wrapper">
-                <TrendingUp size={24} className="benefit-icon" />
+              <div className="benefit-icon">
+                <TrendingUp size={28} />
               </div>
-              <h3 className="benefit-title">Talent Identification</h3>
+              <h3 className="benefit-title">National Selection Pathway</h3>
               <p className="benefit-desc">
-                Discovers and profiles potential junior champions through structured metrics, school records, and physical attributes.
+                Direct visibility to national selectors and provincial scouts for talented under-15 field hockey players.
               </p>
             </div>
-
             <div className="benefit-card">
-              <div className="benefit-icon-wrapper">
-                <Activity size={24} className="benefit-icon" />
+              <div className="benefit-icon">
+                <Activity size={28} />
               </div>
-              <h3 className="benefit-title">National Tracking</h3>
+              <h3 className="benefit-title">Equipment & Training Grants</h3>
               <p className="benefit-desc">
-                Monitors growth indices, injury records, preferred sport positions, and fitness benchmarks under a unified registry.
+                Eligible schools gain priority access to government field hockey equipment grants and coaching clinics.
               </p>
             </div>
-
             <div className="benefit-card">
-              <div className="benefit-icon-wrapper">
-                <Users size={24} className="benefit-icon" />
+              <div className="benefit-icon">
+                <Users size={28} />
               </div>
-              <h3 className="benefit-title">Equal Opportunity</h3>
+              <h3 className="benefit-title">Verified Digital Registry</h3>
               <p className="benefit-desc">
-                Ensures fair access and support for both boys and girls, removing structural barriers to provincial and national representation.
+                Secure, immutable record-keeping of athlete achievements, age verification, and tournament participation.
               </p>
             </div>
           </div>
@@ -111,6 +109,19 @@ export default function Home() {
               <div className="stat-item">
                 <span className="stat-num">Signed</span>
                 <span className="stat-label">Document Security</span>
+              </div>
+            </div>
+
+            {/* Priority Kit Advantage Box */}
+            <div className="kit-advantage-box animate-fade-in">
+              <div className="kit-advantage-icon">
+                <Award size={26} />
+              </div>
+              <div className="kit-advantage-content">
+                <h4 className="kit-advantage-title">Priority Kit Distribution & Equipment Grants</h4>
+                <p className="kit-advantage-desc">
+                  Athletes who register through and link their profiles with an <strong>approved, affiliated school</strong> receive priority verification status—unlocking significantly higher eligibility and priority selection for <strong>Free Official National Hockey Kits</strong>, professional sticks, and training gear.
+                </p>
               </div>
             </div>
           </div>

@@ -163,7 +163,7 @@ export default function Login({ isOpen, onClose }) {
                   value={identifier}
                   onChange={(e) => setIdentifier(e.target.value)}
                   required
-                  placeholder="e.g. admin@sportsportal.gov.pk or 0300-1234567"
+                  placeholder="e.g. athlete@gmail.com or 0300-1234567"
                   autoComplete="username"
                 />
               </div>
